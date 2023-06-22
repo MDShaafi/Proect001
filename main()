@@ -1,0 +1,50 @@
+// input 5 names and marks
+// display student name with highest and lowest score
+// display all students who failed the module and avergae mark
+
+#include <stdio.h>
+
+int main() {
+    int studentMarks[5];
+    char studentNames[5][100];
+    int H=0;
+    int L=0;
+    int averageMarks=0;
+    
+    for(int i=0;i<5;i++) {
+        printf("Enter Student %d name: \n",i);
+        fgets(studentNames[i],sizeof(studentNames),stdin);
+        //while (getchar() != '\n');
+        printf("Enter Student %d marks: \n",i);
+        scanf("%d",&studentMarks[i]);
+        while (getchar() != '\n');
+    }
+
+    for (int i = 0; i < 5; i++){
+        if (studentMarks[H]<studentMarks[i]){
+            H = i;
+        } else if (studentMarks[L]>studentMarks[i]){
+            L = i;
+        }
+    }
+
+    for(int i=0;i<5;i++) {
+        printf("Student %d: %s with mark of %d\r",i,studentNames[i],studentMarks[i]);
+        printf("\n\n");
+    }
+
+    printf("Student with the highest score is:%s with a score of:%d\n",studentNames[H],studentMarks[H]);
+    printf("Student with the lowest score is:%s with a score of:%d\n",studentNames[L],studentMarks[L]);
+    
+    printf("\nStudents who failed are: \n");
+    for (int i = 0; i < 5; i++){
+        if (studentMarks[i]<50){
+            printf("%s:%d",studentNames[i],studentMarks[i]);
+        }
+        averageMarks = averageMarks+studentMarks[i];
+    }
+    averageMarks = averageMarks/5;
+    printf("Average marks is:%d",averageMarks);
+        
+    return 0;
+}
